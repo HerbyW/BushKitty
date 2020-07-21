@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<!--
+***********************************************************************************
+c172p-detailed, May 2015... Nov. 2016 
+Extra weight and drag due to bush wheels, floats and aircraft with 180 hp engine
+***********************************************************************************
+ -->
+
+<system name="bushkits">
+
+    <channel name="extra-weight">
+
+        <switch name="extra-weight-left-36-in">
+            <default value="0"/>
+            <test logic="AND" value="15">
+                bushkit EQ 2
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[7]</output>
+        </switch>
+
+        <switch name="extra-weight-right-36-in">
+            <default value="0"/>
+            <test logic="AND" value="15">
+                bushkit EQ 2
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[8]</output>
+        </switch>
+
+        <switch name="extra-weight-180hp">
+        <!-- Aircraft **Basic Empty Weight** difference. 160 hp: 1467 lbs, 180 hp: 1642 lbs -->
+            <default value="0"/>
+            <test logic="AND" value="175">
+                /controls/engines/active-engine EQ 1
+            </test>
+            <output>/fdm/jsbsim/inertia/pointmass-weight-lbs[15]</output>
+        </switch>
+    </channel>
+
+    <channel name="extra-drag">
+        <switch name="drag-36-in">
+            <default value="1"/>
+            <test logic="AND" value="1.07">
+                bushkit EQ 2
+            </test>
+            <output>gear/drag-coef[2]</output>
+        </switch>
+    </channel>
+
+    <channel name="GPS-placement">
+        <switch name="gps-placement">
+            <default value="0"/>
+            <test logic="AND" value="1">
+                bushkit EQ 4
+            </test>
+            <output>/Interior/Panel/Instruments/garmin196/move</output>
+        </switch>
+    </channel>
+
+</system>
