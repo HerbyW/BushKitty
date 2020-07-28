@@ -3,7 +3,6 @@
 <PropertyList>
 
     <sim include="c172p-views.xml">
-        <variant-of>c172p</variant-of>
         <description>BushKitty (180 hp) 36" Bush Tires</description>
 
         <tags>
